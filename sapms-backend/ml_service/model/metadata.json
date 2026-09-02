@@ -1,0 +1,48 @@
+{
+  "model_name": "logistic_regression",
+  "model_version": "1.0",
+  "feature_columns": [
+    "attendance_rate",
+    "absenteeism_flag",
+    "absenteeism_duration",
+    "gpa",
+    "performance_trend_numeric",
+    "subject_weakness_count"
+  ],
+  "metrics": {
+    "accuracy": 0.9545,
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1": 0.6667,
+    "auc_roc": 0.9894,
+    "cv_f1_mean": 0.9521
+  },
+  "all_model_metrics": {
+    "logistic_regression": {
+      "accuracy": 0.9545,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6667,
+      "auc_roc": 0.9894,
+      "cv_f1_mean": 0.9521
+    },
+    "decision_tree": {
+      "accuracy": 0.9394,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc_roc": 0.4921,
+      "cv_f1_mean": 0.9684
+    },
+    "random_forest": {
+      "accuracy": 0.9394,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "auc_roc": 0.9735,
+      "cv_f1_mean": 0.9785
+    }
+  },
+  "trained_on_rows": 440,
+  "source": "db"
+}

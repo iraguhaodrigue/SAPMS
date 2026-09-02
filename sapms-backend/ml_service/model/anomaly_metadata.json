@@ -1,0 +1,94 @@
+{
+  "trained_at": "2026-07-23T20:47:49.710378Z",
+  "approach": "hybrid: deterministic policy rules + unsupervised Isolation Forest",
+  "school_hours": [
+    6,
+    18
+  ],
+  "contamination": 0.03,
+  "session_detector": {
+    "samples": 1408,
+    "actual_anomalies": 50,
+    "flagged": 72,
+    "precision": 0.6944,
+    "recall": 1.0,
+    "f1": 0.8197,
+    "false_positive_rate": 0.0162,
+    "confusion": {
+      "tp": 50,
+      "fp": 22,
+      "fn": 0,
+      "tn": 1336
+    },
+    "features": [
+      "scan_span_sec",
+      "sec_per_scan",
+      "median_gap_sec",
+      "present_rate",
+      "activity_hour",
+      "dow"
+    ],
+    "rule_flagged": 30,
+    "ml_flagged": 42
+  },
+  "assessment_detector": {
+    "samples": 192,
+    "actual_anomalies": 8,
+    "flagged": 10,
+    "precision": 0.8,
+    "recall": 1.0,
+    "f1": 0.8889,
+    "false_positive_rate": 0.0109,
+    "confusion": {
+      "tp": 8,
+      "fp": 2,
+      "fn": 0,
+      "tn": 182
+    },
+    "features": [
+      "class_mean",
+      "class_std",
+      "pct_above_90",
+      "dev_from_teacher",
+      "z_vs_teacher"
+    ]
+  },
+  "recall_by_anomaly_type": {
+    "bulk_marking": {
+      "total": 14,
+      "caught": 14,
+      "recall": 1.0,
+      "by_rule": 0,
+      "by_ml": 14
+    },
+    "duplicate_scan": {
+      "total": 8,
+      "caught": 8,
+      "recall": 1.0,
+      "by_rule": 2,
+      "by_ml": 6
+    },
+    "grade_inflation": {
+      "total": 8,
+      "caught": 8,
+      "recall": 1.0,
+      "by_rule": 0,
+      "by_ml": 8
+    },
+    "no_biometric": {
+      "total": 14,
+      "caught": 14,
+      "recall": 1.0,
+      "by_rule": 14,
+      "by_ml": 0
+    },
+    "odd_hours": {
+      "total": 14,
+      "caught": 14,
+      "recall": 1.0,
+      "by_rule": 14,
+      "by_ml": 0
+    }
+  },
+  "note": "Isolation Forest is unsupervised; anomaly_ground_truth was used only to evaluate the result, never to fit the models."
+}

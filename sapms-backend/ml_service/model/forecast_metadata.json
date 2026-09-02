@@ -1,0 +1,181 @@
+{
+  "trained_at": "2026-08-03T22:47:53.998581Z",
+  "pass_mark": 50.0,
+  "validation": "GroupShuffleSplit by class_id \u2014 no test-class student seen in training",
+  "features": [
+    "cat_mean",
+    "cat_min",
+    "cat_max",
+    "cat_trend",
+    "cat_count",
+    "attendance_rate",
+    "late_rate",
+    "absent_streak",
+    "sessions_total",
+    "sessions_present"
+  ],
+  "label_definition": {
+    "classification": "end-of-term percentage < 50.0",
+    "regression": "end-of-term percentage",
+    "note": "Label comes from a future held-out assessment. Features use only data recorded before that assessment date. This replaces the earlier heuristic label, which was a deterministic function of its own features and therefore circular."
+  },
+  "classification": {
+    "roc_auc": 0.6493,
+    "operating_threshold": 0.55,
+    "threshold_selected_on": "out-of-fold (5-fold, grouped by class) on training set, threshold maximising F1",
+    "accuracy": 0.736,
+    "precision": 0.2747,
+    "recall": 0.4025,
+    "f1": 0.3265,
+    "confusion": {
+      "tp": 64,
+      "fp": 169,
+      "fn": 95,
+      "tn": 672
+    },
+    "test_rows": 1000,
+    "at_risk_prevalence": 0.159,
+    "majority_baseline_accuracy": 0.841,
+    "random_baseline_auc": 0.5,
+    "beats_random_auc": true,
+    "operating_points": [
+      {
+        "target_recall": 0.5,
+        "threshold": 0.55,
+        "test_recall": 0.4025,
+        "test_precision": 0.2747,
+        "test_f1": 0.3265,
+        "students_flagged": 233
+      },
+      {
+        "target_recall": 0.6,
+        "threshold": 0.48,
+        "test_recall": 0.5597,
+        "test_precision": 0.2306,
+        "test_f1": 0.3266,
+        "students_flagged": 386
+      },
+      {
+        "target_recall": 0.7,
+        "threshold": 0.44,
+        "test_recall": 0.6541,
+        "test_precision": 0.2043,
+        "test_f1": 0.3114,
+        "students_flagged": 509
+      },
+      {
+        "target_recall": 0.8,
+        "threshold": 0.38,
+        "test_recall": 0.805,
+        "test_precision": 0.1972,
+        "test_f1": 0.3168,
+        "students_flagged": 649
+      }
+    ],
+    "metric_note": "Classes are imbalanced; ROC-AUC is the headline metric. Majority-class accuracy is reported for transparency but is not the success criterion, since a majority-class predictor identifies no at-risk students at all.",
+    "feature_importance": [
+      {
+        "feature": "cat_max",
+        "importance": 0.2928
+      },
+      {
+        "feature": "cat_mean",
+        "importance": 0.2876
+      },
+      {
+        "feature": "cat_min",
+        "importance": 0.1663
+      },
+      {
+        "feature": "cat_trend",
+        "importance": 0.0775
+      },
+      {
+        "feature": "attendance_rate",
+        "importance": 0.0682
+      },
+      {
+        "feature": "sessions_present",
+        "importance": 0.0533
+      },
+      {
+        "feature": "absent_streak",
+        "importance": 0.0239
+      },
+      {
+        "feature": "late_rate",
+        "importance": 0.0185
+      },
+      {
+        "feature": "sessions_total",
+        "importance": 0.0114
+      },
+      {
+        "feature": "cat_count",
+        "importance": 0.0005
+      }
+    ]
+  },
+  "regression": {
+    "model": {
+      "mae": 10.041,
+      "rmse": 12.595,
+      "r2": -0.0863
+    },
+    "baseline_global_mean": {
+      "mae": 9.802,
+      "rmse": 12.329,
+      "r2": -0.041
+    },
+    "baseline_cat_average": {
+      "mae": 11.224,
+      "rmse": 14.179,
+      "r2": -0.3768
+    },
+    "beats_mean_baseline": false,
+    "beats_cat_average_baseline": true,
+    "test_rows": 1000,
+    "feature_importance": [
+      {
+        "feature": "cat_mean",
+        "importance": 0.307
+      },
+      {
+        "feature": "cat_max",
+        "importance": 0.1898
+      },
+      {
+        "feature": "cat_min",
+        "importance": 0.1689
+      },
+      {
+        "feature": "cat_trend",
+        "importance": 0.117
+      },
+      {
+        "feature": "attendance_rate",
+        "importance": 0.09
+      },
+      {
+        "feature": "sessions_total",
+        "importance": 0.0507
+      },
+      {
+        "feature": "absent_streak",
+        "importance": 0.04
+      },
+      {
+        "feature": "late_rate",
+        "importance": 0.0188
+      },
+      {
+        "feature": "sessions_present",
+        "importance": 0.0168
+      },
+      {
+        "feature": "cat_count",
+        "importance": 0.001
+      }
+    ]
+  }
+}
