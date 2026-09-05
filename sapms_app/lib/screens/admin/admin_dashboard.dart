@@ -10,6 +10,7 @@ import 'blockchain_screen.dart';
 import 'security_alerts_screen.dart';
 import 'pending_approvals_screen.dart';
 import '../../utils/locale_controller.dart';
+import 'school_admin_screen.dart';
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -78,6 +79,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
             onPressed: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const PendingApprovalsScreen())),
           ),
+          IconButton(
+  icon: const Icon(Icons.manage_accounts_rounded),
+  tooltip: 'School Administration',
+  onPressed: () => Navigator.push(context,
+    MaterialPageRoute(builder: (_) => const SchoolAdminScreen())),
+),
           IconButton(icon: const Icon(Icons.refresh), onPressed: _load),
           IconButton(icon: const Icon(Icons.school_rounded), tooltip: 'School Management', onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SchoolManagementScreen()))),
             IconButton(icon: const Icon(Icons.logout),  onPressed: _logout),
