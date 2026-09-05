@@ -15,6 +15,7 @@ const teacherClassesCtrl = require('../controllers/teacherClassesController');
 const schoolMgmtCtrl = require('../controllers/schoolMgmtController');
 const notificationService = require('../services/notificationService');
 const mlService = require('../services/mlService');
+const adminMgmtCtrl = require('../controllers/adminMgmtController');
 
 // ── Health check ──────────────────────────────────────────────
 router.get('/health', async (req, res) => {
@@ -86,6 +87,42 @@ router.get('/anomalies',                        authenticate, authorize('admin',
 // ── Performance forecasting (F2) ──────────────────────────────
 router.get('/forecasts/student/:id',            authenticate, forecastCtrl.getStudentForecasts);
 router.get('/forecasts/summary',                authenticate, authorize('admin','sysadmin'), forecastCtrl.getForecastSummary);
+// ═══════════════════════════════════════════════════════════════════════
+// ADMIN MANAGEMENT ROUTES — add these to src/routes/index.js
+// Place them near the other admin routes. All require admin or sysadmin.
+// ═══════════════════════════════════════════════════════════════════════
+
+
+// 2. Add these route lines (anywhere among the other routes):
+
+// Audit log
+router.get('/admin/audit-log',              authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.getAuditLog);
+
+// Students — move / archive / reactivate
+router.put('/admin/students/:id/move',      authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.moveStudent);
+router.put('/admin/students/:id/archive',   authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.archiveStudent);
+router.put('/admin/students/:id/reactivate',authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.reactivateStudent);
+
+// Parents — list / reassign / impact / delete
+router.get('/admin/parents',                authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.getParents);
+router.put('/admin/parents/:id/reassign',   authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.reassignParent);
+router.get('/admin/parents/:id/impact',     authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.parentImpact);
+router.delete('/admin/parents/:id',         authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.deleteParent);
+
+// Teachers — detailed list / impact / unassign / delete
+router.get('/admin/teachers',               authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.getTeachersDetailed);
+router.get('/admin/teachers/:id/impact',    authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.teacherImpact);
+router.put('/admin/assignments/:id/unassign',authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.unassignTeacher);
+router.delete('/admin/teachers/:id',        authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.deleteTeacher);
+
+// Classes — impact / delete
+router.get('/admin/classes/:id/impact',     authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.classImpact);
+router.delete('/admin/classes/:id',         authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.deleteClass);
+
+// Subjects — impact / delete
+router.get('/admin/subjects/:id/impact',    authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.subjectImpact);
+router.delete('/admin/subjects/:id',        authenticate, authorize('admin','sysadmin'), adminMgmtCtrl.deleteSubject);
+
 
 // ── Teacher's assigned classes/subjects (from class_subjects) ─
 router.get('/teacher/my-classes',               authenticate, authorize('teacher','admin','sysadmin'), teacherClassesCtrl.getMyClasses);
